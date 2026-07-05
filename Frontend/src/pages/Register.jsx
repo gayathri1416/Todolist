@@ -2,6 +2,8 @@ import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import "../register.css";
+import VisibilityIcon from "@mui/icons-material/Visibility";
+import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 
 function Register() {
   const navigate = useNavigate();
@@ -113,7 +115,7 @@ function Register() {
                 setShowPassword(!showPassword)
               }
             >
-              {showPassword ? "🙈" : "👁️"}
+              {showPassword ? <VisibilityOffIcon /> : <VisibilityIcon />}
             </button>
           </div>
 
