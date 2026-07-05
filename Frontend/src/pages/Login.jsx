@@ -2,6 +2,8 @@ import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import "../login.css";
+import VisibilityIcon from "@mui/icons-material/Visibility";
+import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 
 import { requestNotificationPermission } from "../notifications";
 function Login() {
@@ -118,7 +120,7 @@ navigate("/dashboard");
                 setShowPassword(!showPassword)
               }
             >
-              {showPassword ? "Hide" : "Show"}
+              {showPassword ? <VisibilityOffIcon /> : <VisibilityIcon />}
             </button>
           </div>
 
