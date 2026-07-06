@@ -46,7 +46,7 @@ function Register() {
 
     try {
       await axios.post(
-        "https://tasktracking-production.up.railway.app/api/auth/register",
+        "https://tasktracking-i6et.onrender.com/api/auth/register",
         registerData
       );
 

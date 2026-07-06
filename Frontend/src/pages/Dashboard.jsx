@@ -11,7 +11,7 @@ function Dashboard() {
   const fetchTasks = async () => {
     try {
       const res = await axios.get(
-        "https://tasktracking-production.up.railway.app/api/tasks",
+        "https://tasktracking-i6et.onrender.com/api/tasks",
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -95,9 +95,8 @@ function Dashboard() {
 
     if (diffDays < 0) {
       return {
-        text: `Overdue by ${Math.abs(diffDays)} day${
-          Math.abs(diffDays) > 1 ? "s" : ""
-        }`,
+        text: `Overdue by ${Math.abs(diffDays)} day${Math.abs(diffDays) > 1 ? "s" : ""
+          }`,
         className: "overdue",
       };
     }

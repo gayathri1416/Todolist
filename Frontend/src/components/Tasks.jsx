@@ -3,297 +3,297 @@ import axios from "axios";
 import Navbar from "../components/Navbar";
 
 function Tasks() {
-const [tasks, setTasks] = useState([]);
-const [showForm, setShowForm] = useState(false);
-const [isEdit, setIsEdit] = useState(false);
-const [editId, setEditId] = useState(null);
+  const [tasks, setTasks] = useState([]);
+  const [showForm, setShowForm] = useState(false);
+  const [isEdit, setIsEdit] = useState(false);
+  const [editId, setEditId] = useState(null);
 
-const token = localStorage.getItem("token");
+  const token = localStorage.getItem("token");
 
-const [taskData, setTaskData] = useState({
-title: "",
-description: "",
-due_date: "",
-status: "Pending",
-});
+  const [taskData, setTaskData] = useState({
+    title: "",
+    description: "",
+    due_date: "",
+    status: "Pending",
+  });
 
-const fetchTasks = async () => {
-try {
-const res = await axios.get(
-"https://tasktracking-production.up.railway.app/api/tasks",
-{
-headers: {
-Authorization: `Bearer ${token}`,
-},
-}
-);
-
-
-  setTasks(res.data);
-} catch (error) {
-  console.log(error);
-  alert("Failed to fetch tasks");
-}
+  const fetchTasks = async () => {
+    try {
+      const res = await axios.get(
+        "https://tasktracking-i6et.onrender.com/api/tasks",
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
 
 
-};
-
-useEffect(() => {
-fetchTasks();
-}, []);
-
-const addTask = async () => {
-await axios.post(
-"https://tasktracking-production.up.railway.app/api/tasks",
-taskData,
-{
-headers: {
-Authorization: `Bearer ${token}`,
-},
-}
-);
-
-resetForm();
-fetchTasks();
+      setTasks(res.data);
+    } catch (error) {
+      console.log(error);
+      alert("Failed to fetch tasks");
+    }
 
 
-};
+  };
 
-const updateTask = async () => {
-await axios.put(
-`https://tasktracking-production.up.railway.app/api/tasks/${editId}`,
-taskData,
-{
-headers: {
-Authorization: `Bearer ${token}`,
-},
-}
-);
+  useEffect(() => {
+    fetchTasks();
+  }, []);
 
+  const addTask = async () => {
+    await axios.post(
+      "https://tasktracking-i6et.onrender.com/api/tasks",
+      taskData,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
 
-resetForm();
-fetchTasks();
-
-
-};
-
-const deleteTask = async (id) => {
-await axios.delete(
-`https://tasktracking-production.up.railway.app/api/tasks/${id}`,
-{
-headers: {
-Authorization: `Bearer ${token}`,
-},
-}
-);
+    resetForm();
+    fetchTasks();
 
 
-fetchTasks();
+  };
+
+  const updateTask = async () => {
+    await axios.put(
+      `https://tasktracking-i6et.onrender.com/api/tasks/${editId}`,
+      taskData,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
 
 
-};
-
-const handleEdit = (task) => {
-setTaskData({
-title: task.title,
-description: task.description,
-due_date: task.due_date
-? task.due_date.split("T")[0]
-: "",
-status: task.status,
-});
+    resetForm();
+    fetchTasks();
 
 
-setEditId(task.id);
-setIsEdit(true);
-setShowForm(true);
+  };
 
-};
-
-const resetForm = () => {
-setTaskData({
-title: "",
-description: "",
-due_date: "",
-status: "Pending",
-});
-
-setShowForm(false);
-setIsEdit(false);
-setEditId(null);
+  const deleteTask = async (id) => {
+    await axios.delete(
+      `https://tasktracking-i6et.onrender.com/api/tasks/${id}`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
 
 
-};
-
-const formatDate = (date) => {
-if (!date) return "No Date";
+    fetchTasks();
 
 
-return new Date(date).toLocaleDateString("en-IN");
+  };
+
+  const handleEdit = (task) => {
+    setTaskData({
+      title: task.title,
+      description: task.description,
+      due_date: task.due_date
+        ? task.due_date.split("T")[0]
+        : "",
+      status: task.status,
+    });
 
 
-};
+    setEditId(task.id);
+    setIsEdit(true);
+    setShowForm(true);
 
-const getRemainingDays = (dueDate, status) => {
-if (status === "Completed") {
-return "Task Completed";
-}
+  };
 
+  const resetForm = () => {
+    setTaskData({
+      title: "",
+      description: "",
+      due_date: "",
+      status: "Pending",
+    });
 
-if (!dueDate) return "No Due Date";
-
-const today = new Date();
-const due = new Date(dueDate);
-
-today.setHours(0, 0, 0, 0);
-due.setHours(0, 0, 0, 0);
-
-const diff = Math.ceil(
-  (due - today) / (1000 * 60 * 60 * 24)
-);
-
-if (diff < 0) {
-  return `Overdue by ${Math.abs(diff)} day(s)`;
-}
-
-if (diff === 0) {
-  return "Due Today";
-}
-
-return `${diff} day(s) left`;
+    setShowForm(false);
+    setIsEdit(false);
+    setEditId(null);
 
 
-};
+  };
 
-return ( <div> <Navbar />
+  const formatDate = (date) => {
+    if (!date) return "No Date";
 
 
-  <div style={{ padding: "20px" }}>
-    <h1>My Tasks</h1>
+    return new Date(date).toLocaleDateString("en-IN");
 
-    <button onClick={() => setShowForm(!showForm)}>
-      Add Task
-    </button>
 
-    {showForm && (
-      <div style={{ marginTop: "20px" }}>
-        <input
-          placeholder="Title"
-          value={taskData.title}
-          onChange={(e) =>
-            setTaskData({
-              ...taskData,
-              title: e.target.value,
-            })
-          }
-        />
+  };
 
-        <br />
-        <br />
+  const getRemainingDays = (dueDate, status) => {
+    if (status === "Completed") {
+      return "Task Completed";
+    }
 
-        <input
-          placeholder="Description"
-          value={taskData.description}
-          onChange={(e) =>
-            setTaskData({
-              ...taskData,
-              description: e.target.value,
-            })
-          }
-        />
 
-        <br />
-        <br />
+    if (!dueDate) return "No Due Date";
 
-        <input
-          type="date"
-          value={taskData.due_date}
-          onChange={(e) =>
-            setTaskData({
-              ...taskData,
-              due_date: e.target.value,
-            })
-          }
-        />
+    const today = new Date();
+    const due = new Date(dueDate);
 
-        <br />
-        <br />
+    today.setHours(0, 0, 0, 0);
+    due.setHours(0, 0, 0, 0);
 
-        <select
-          value={taskData.status}
-          onChange={(e) =>
-            setTaskData({
-              ...taskData,
-              status: e.target.value,
-            })
-          }
+    const diff = Math.ceil(
+      (due - today) / (1000 * 60 * 60 * 24)
+    );
+
+    if (diff < 0) {
+      return `Overdue by ${Math.abs(diff)} day(s)`;
+    }
+
+    if (diff === 0) {
+      return "Due Today";
+    }
+
+    return `${diff} day(s) left`;
+
+
+  };
+
+  return (<div> <Navbar />
+
+
+    <div style={{ padding: "20px" }}>
+      <h1>My Tasks</h1>
+
+      <button onClick={() => setShowForm(!showForm)}>
+        Add Task
+      </button>
+
+      {showForm && (
+        <div style={{ marginTop: "20px" }}>
+          <input
+            placeholder="Title"
+            value={taskData.title}
+            onChange={(e) =>
+              setTaskData({
+                ...taskData,
+                title: e.target.value,
+              })
+            }
+          />
+
+          <br />
+          <br />
+
+          <input
+            placeholder="Description"
+            value={taskData.description}
+            onChange={(e) =>
+              setTaskData({
+                ...taskData,
+                description: e.target.value,
+              })
+            }
+          />
+
+          <br />
+          <br />
+
+          <input
+            type="date"
+            value={taskData.due_date}
+            onChange={(e) =>
+              setTaskData({
+                ...taskData,
+                due_date: e.target.value,
+              })
+            }
+          />
+
+          <br />
+          <br />
+
+          <select
+            value={taskData.status}
+            onChange={(e) =>
+              setTaskData({
+                ...taskData,
+                status: e.target.value,
+              })
+            }
+          >
+            <option value="Pending">Pending</option>
+            <option value="Completed">Completed</option>
+          </select>
+
+          <br />
+          <br />
+
+          <button onClick={isEdit ? updateTask : addTask}>
+            {isEdit ? "Update Task" : "Add Task"}
+          </button>
+
+          <button
+            onClick={resetForm}
+            style={{ marginLeft: "10px" }}
+          >
+            Cancel
+          </button>
+        </div>
+      )}
+
+      {tasks.map((t) => (
+        <div
+          key={t.id}
+          style={{
+            border: "1px solid #ccc",
+            marginTop: "15px",
+            padding: "10px",
+          }}
         >
-          <option value="Pending">Pending</option>
-          <option value="Completed">Completed</option>
-        </select>
+          <h3>{t.title}</h3>
 
-        <br />
-        <br />
+          <p>{t.description}</p>
 
-        <button onClick={isEdit ? updateTask : addTask}>
-          {isEdit ? "Update Task" : "Add Task"}
-        </button>
+          <p>
+            <b>Due:</b> {formatDate(t.due_date)}
+          </p>
 
-        <button
-          onClick={resetForm}
-          style={{ marginLeft: "10px" }}
-        >
-          Cancel
-        </button>
-      </div>
-    )}
+          <p>
+            <b>Remaining:</b>{" "}
+            {getRemainingDays(
+              t.due_date,
+              t.status
+            )}
+          </p>
 
-    {tasks.map((t) => (
-      <div
-        key={t.id}
-        style={{
-          border: "1px solid #ccc",
-          marginTop: "15px",
-          padding: "10px",
-        }}
-      >
-        <h3>{t.title}</h3>
+          <p>
+            <b>Status:</b> {t.status}
+          </p>
 
-        <p>{t.description}</p>
+          <button onClick={() => handleEdit(t)}>
+            Edit
+          </button>
 
-        <p>
-          <b>Due:</b> {formatDate(t.due_date)}
-        </p>
-
-        <p>
-          <b>Remaining:</b>{" "}
-          {getRemainingDays(
-            t.due_date,
-            t.status
-          )}
-        </p>
-
-        <p>
-          <b>Status:</b> {t.status}
-        </p>
-
-        <button onClick={() => handleEdit(t)}>
-          Edit
-        </button>
-
-        <button
-          onClick={() => deleteTask(t.id)}
-          style={{ marginLeft: "10px" }}
-        >
-          Delete
-        </button>
-      </div>
-    ))}
+          <button
+            onClick={() => deleteTask(t.id)}
+            style={{ marginLeft: "10px" }}
+          >
+            Delete
+          </button>
+        </div>
+      ))}
+    </div>
   </div>
-</div>
 
 
-);
+  );
 }
 
 export default Tasks;

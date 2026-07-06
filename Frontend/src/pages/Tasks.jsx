@@ -21,7 +21,7 @@ function Tasks() {
   const fetchTasks = async () => {
     try {
       const res = await axios.get(
-        "https://tasktracking-production.up.railway.app/api/tasks",
+        "https://tasktracking-i6et.onrender.com/api/tasks",
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -44,7 +44,7 @@ function Tasks() {
   const addTask = async () => {
     try {
       await axios.post(
-        "https://tasktracking-production.up.railway.app/api/tasks",
+        "https://tasktracking-i6et.onrender.com/api/tasks",
         taskData,
         {
           headers: {
@@ -63,7 +63,7 @@ function Tasks() {
   const updateTask = async () => {
     try {
       await axios.put(
-        `https://tasktracking-production.up.railway.app/api/tasks/${editId}`,
+        `https://tasktracking-i6et.onrender.com/api/tasks/${editId}`,
         taskData,
         {
           headers: {
@@ -82,7 +82,7 @@ function Tasks() {
   const deleteTask = async (id) => {
     try {
       await axios.delete(
-        `https://tasktracking-production.up.railway.app/api/tasks/${id}`,
+        `https://tasktracking-i6et.onrender.com/api/tasks/${id}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -191,9 +191,8 @@ function Tasks() {
     );
 
     if (diffDays < 0) {
-      return `Overdue by ${Math.abs(diffDays)} day${
-        Math.abs(diffDays) > 1 ? "s" : ""
-      }`;
+      return `Overdue by ${Math.abs(diffDays)} day${Math.abs(diffDays) > 1 ? "s" : ""
+        }`;
     }
 
     if (diffDays === 0) return "Due Today";

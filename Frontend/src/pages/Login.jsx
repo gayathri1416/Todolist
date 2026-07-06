@@ -28,7 +28,7 @@ function Login() {
 
     try {
       const res = await axios.post(
-        "https://tasktracking-production.up.railway.app/api/auth/login",
+        "https://tasktracking-i6et.onrender.com/api/auth/login",
         loginData
       );
 
@@ -50,23 +50,23 @@ function Login() {
       );
 
       alert(`Welcome, ${res.data.user?.name}!`);
-const fcmToken = await requestNotificationPermission();
+      const fcmToken = await requestNotificationPermission();
 
-if (fcmToken) {
-  await axios.post(
-    "https://tasktracking-production.up.railway.app/api/notifications/token",
-    {
-      token: fcmToken,
-    },
-    {
-      headers: {
-        Authorization: `Bearer ${res.data.token}`,
-      },
-    }
-  );
-}
+      if (fcmToken) {
+        await axios.post(
+          "https://tasktracking-i6et.onrender.com/api/notifications/token",
+          {
+            token: fcmToken,
+          },
+          {
+            headers: {
+              Authorization: `Bearer ${res.data.token}`,
+            },
+          }
+        );
+      }
 
-navigate("/dashboard");
+      navigate("/dashboard");
     } catch (error) {
       const message =
         error.response?.data?.message ||
