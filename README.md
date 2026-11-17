@@ -1548,19 +1548,19 @@ html,body,#root {
 ## OUTPUT
 
 ### 1. Login Page
-![Login Page](<Screenshot 2026-07-05 150121.png>)
+![Login Page](<results/Screenshot 2026-07-05 150121.png>)
 ### 2. Register Page
-![Dashboard](<Screenshot 2026-07-05 150137.png>)
+![Dashboard](<results/Screenshot 2026-07-05 150137.png>)
 ### 3. Dashboard
-![Tasks Page](<Screenshot 2026-07-05 150743.png>)
-![Screenshot 4](<Screenshot 2026-07-05 150809.png>)
+![Tasks Page](<results/Screenshot 2026-07-05 150743.png>)
+![Screenshot 4](<results/Screenshot 2026-07-05 150809.png>)
 ### 4.Task page
-![Latest Screenshot](<Screenshot 2026-11-17 171359.png>)
+![Latest Screenshot](<results/Screenshot 2026-11-17 171359.png>)
 ### 5. Sample Tasks
 
-![Screenshot 5](<Screenshot 2026-07-05 151652.png>)
-![Screenshot 6](<Screenshot 2026-07-05 151715.png>)
+![Screenshot 5](<results/Screenshot 2026-07-05 151652.png>)
+![Screenshot 6](<results/Screenshot 2026-07-05 151715.png>)
 
-
+```
 ## RESULT
 The program for creating To-do list using JavaScript is executed successfully.
