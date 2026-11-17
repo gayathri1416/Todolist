@@ -1564,3 +1564,4 @@ html,body,#root {
 
 ## RESULT
 The program for creating To-do list using JavaScript is executed successfully.
+![alt text](<../Screenshot 2026-07-05 150121.png>)
