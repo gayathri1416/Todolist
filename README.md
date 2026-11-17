@@ -1544,14 +1544,8 @@ html,body,#root {
 
 
 ## OUTPUT
-![alt text](<Screenshot 2026-07-05 150121.png>)
-![alt text](<Screenshot 2026-07-05 150137.png>)
-![alt text](<Screenshot 2026-11-17 171359.png>)
-![alt text](<Screenshot 2026-07-05 150743.png>)
-![alt text](<Screenshot 2026-07-05 150809.png>)
-![alt text](<Screenshot 2026-07-05 151652.png>)
-![alt text](<Screenshot 2026-07-05 151715.png>)
 
+![alt text](<../Screenshot 2026-07-05 150121.png>)
 
 
 
