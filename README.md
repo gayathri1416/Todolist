@@ -1545,8 +1545,28 @@ html,body,#root {
 
 ## OUTPUT
 
-![alt text](<../Screenshot 2026-07-05 150121.png>)
+## OUTPUT
 
+### 1. Login Page
+![Login Page](<Screenshot 2026-07-05 150121.png>)
+
+### 2. Dashboard
+![Dashboard](<Screenshot 2026-07-05 150137.png>)
+
+### 3. Tasks Page
+![Tasks Page](<Screenshot 2026-07-05 150743.png>)
+
+### 4. Screenshot 4
+![Screenshot 4](<Screenshot 2026-07-05 150809.png>)
+
+### 5. Screenshot 5
+![Screenshot 5](<Screenshot 2026-07-05 151652.png>)
+
+### 6. Screenshot 6
+![Screenshot 6](<Screenshot 2026-07-05 151715.png>)
+
+### 7. Latest Screenshot
+![Latest Screenshot](<Screenshot 2026-11-17 171359.png>)
 
 
 ## RESULT
